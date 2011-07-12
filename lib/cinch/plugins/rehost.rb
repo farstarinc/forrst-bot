@@ -31,7 +31,7 @@ module Cinch
     class Rehost
       include Cinch::Plugin
 
-      match(/rehost (.+)/)
+      match(/rehost\s+(.+)/)
 
       ##
       # Executes the plugin.
