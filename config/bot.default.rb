@@ -21,6 +21,10 @@ ForrstBot::Bot.configure do |c|
     :password => nil,
     :type     => :nickserv 
   }
+
+  c.plugins.options[Cinch::Plugins::Rehost] = {
+    :api_key => nil
+  }
 end
 
 # General options
