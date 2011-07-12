@@ -3,6 +3,7 @@ require 'sequel'
 
 # Load all Cinch plugins
 require 'cinch/plugins/identify'
+require 'cinch/plugins/urbandictionary'
 
 ##
 # ForrstBot (known as "forrst-bot" on IRC) is a bot written for the Forrst
@@ -70,7 +71,10 @@ module ForrstBot
           end
 
           # Load all the plugins
-          c.plugins.plugins = [Cinch::Plugins::Identify]
+          c.plugins.plugins = [
+            Cinch::Plugins::Identify,
+            Cinch::Plugins::UrbanDictionary
+          ]
 
           # Configure the plugins
           c.plugins.options[Cinch::Plugins::Identify] = {
