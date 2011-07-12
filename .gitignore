@@ -2,9 +2,6 @@
 config/bot.rb
 config/database.rb
 
-# Ignore all log files
-log/*.log
-
 # Ignore common files
 .DS_Store
 *.orig
