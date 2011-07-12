@@ -1,15 +1,27 @@
-##
-# This file can be used to set various configuration options for the bot without
-# having to set them in the command line over and over again. Setting options
-# works as following:
-#
-#     ForrstBot::Options[:nick] = 'forrst-bot'
-#
-# All options set in ForrstBot::Options will be copied over to Cinch so have a
-# look at the following page for all available options:
-#
-# https://github.com/cinchrb/cinch/blob/master/lib/cinch/bot_configuration.rb
-#
+# Configure Cinch
+ForrstBot::Bot.configure do |c|
+  c.nick     = 'forrst-bot'
+  c.user     = 'forrst-bot'
+  c.password = nil
+  c.server   = 'irc.freenode.net'
+  c.channels = ['#forrst-chat']
+  c.verbose  = false
 
-# ForrstBot::Options[:nick]     = 'forrst-bot'
-# ForrstBot::Options[:password] = '...'
+  # Plugin configuration
+  c.plugins.prefix  = /^\+/
+
+  c.plugins.plugins = [
+    Cinch::Plugins::Identify,
+    Cinch::Plugins::UrbanDictionary,
+    Cinch::Plugins::TwitterMention
+  ]
+
+  c.plugins.options[Cinch::Plugins::Identify] = {
+    :username => 'forrst-bot',
+    :password => nil,
+    :type     => :nickserv 
+  }
+end
+
+# General options
+ForrstBot::Options[:daemonize] = false
