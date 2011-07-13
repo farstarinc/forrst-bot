@@ -18,7 +18,7 @@ module Cinch
     #
     # Example:
     #
-    #     +rehost https://encrypted.google.com/images/logos/ssl_ps_logo.png
+    #     $rehost https://encrypted.google.com/images/logos/ssl_ps_logo.png
     #
     # ## Options
     #
