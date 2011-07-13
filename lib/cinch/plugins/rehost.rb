@@ -43,9 +43,31 @@ module Cinch
       # re-hosted.
       #
       def execute(message, image)
+        # If the page is an HTML page we'll have to extract the image URL. The
+        # first <img> tag that's found is used.
+        image    = URI.parse(image)
+        response = Net::HTTP.start(image.host) do |http|
+          http.get(image.path)
+        end
+
+        if response.class == Net::HTTPOK and response.content_type === 'text/html'
+          response = Nokogiri::HTML(response.body)
+          image    = response.css('img')[0].attr('src')
+
+          if image.nil?
+            return message.reply(
+              'Failed to extract the image from the HTML page', true
+            )
+          end
+        end
+
+        # Get the actual image URL as they're sometimes redirected. Yes, I'm
+        # looking at you Cloudapp.
+        image = get_real_url(image.to_s)
+
         # POST that bad boy
         response = Net::HTTP.post_form(
-          URI.parse('http://api.imgur.com/2/upload.json'), 
+          URI.parse('http://api.imgur.com/2/upload.json'),
           :key   => config[:api_key],
           :image => image,
           :type  => 'url'
@@ -73,11 +95,41 @@ module Cinch
         else
           return message.reply(
             'Failed to extract the image from the JSON response, ' \
-              + 'make sure the URL points to an actual image', 
+              + 'make sure the URL points to an actual image',
             true
           )
         end
       end
-    end
+
+      ##
+      # Given a URL this method will keep following redirects until it hits the
+      # limit. Once the limit has been reached the final URL is returned.
+      #
+      # @author Yorick Peterse
+      # @since  13-07-2011
+      # @param  [String] url The URL to open.
+      # @param  [Fixnum] limit The amount of redirects to follow.
+      # @return [String]
+      #
+      def get_real_url(url, limit = 10)
+        followed = 0
+
+        while followed < limit do
+          url      = URI.parse(url)
+          response = Net::HTTP.start(url.host) do |http|
+            http.head(url.path)
+          end
+
+          if response['location']
+            url       = response['location']
+            followed += 1
+          else
+            break
+          end
+        end
+
+        return url.to_s
+      end
+    end # Rehost
   end # Plugins
 end # Cinch

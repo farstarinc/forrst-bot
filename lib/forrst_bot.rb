@@ -1,5 +1,6 @@
 require 'cinch'
 require 'sequel'
+require 'nokogiri'
 
 # Load all third-party plugins
 require 'cinch/plugins/identify'
