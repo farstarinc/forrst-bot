@@ -8,12 +8,13 @@ ForrstBot::Bot.configure do |c|
   c.verbose  = false
 
   # Plugin configuration
-  c.plugins.prefix  = /^\+/
+  c.plugins.prefix = /^\+/
 
   c.plugins.plugins = [
     Cinch::Plugins::Identify,
     Cinch::Plugins::UrbanDictionary,
-    Cinch::Plugins::TwitterMention
+    Cinch::Plugins::TwitterMention,
+    Cinch::Plugins::Rehost
   ]
 
   c.plugins.options[Cinch::Plugins::Identify] = {
@@ -26,6 +27,3 @@ ForrstBot::Bot.configure do |c|
     :api_key => nil
   }
 end
-
-# General options
-ForrstBot::Options[:daemonize] = false

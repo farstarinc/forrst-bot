@@ -19,17 +19,6 @@ end
 #
 module ForrstBot
   ##
-  # Hash containing certain options that aren't specific to Cinch.
-  #
-  # @author Yorick Peterse
-  # @since  12-07-2011
-  #
-  Options = {
-    # Whether or not to daemonize the process
-    :daemonize => false,
-  }
-
-  ##
   # Instance of Cinch::Bot.
   #
   # @author Yorick Peterse
@@ -68,7 +57,6 @@ module ForrstBot
       end
       
       # Start the bot
-      Process.daemon(true) if Options[:daemonize]
       Bot.start
     end
   end # class << self

@@ -29,9 +29,7 @@ module Cinch
       # @param  [String] matched_user The user that was mentioned.
       #
       def execute(message, matched_user)
-        users = message.channel.users.map do |u|
-          u[0].nick
-        end
+        users = message.channel.users.map { |u| u[0].nick }
 
         if users.include?(matched_user)
           message.reply(
