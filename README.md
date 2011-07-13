@@ -11,8 +11,9 @@ it on Bitbucket so it's next to impossible to add plugins and what not.
 * Yells at people that use @username style mentions. This isn't Twitter, beat
   it.
 * Allows users to rehost images on Imgur by providing a link to an HTML page or
-  directly to an image to rehost. The command is "rehost".
-* Urban dictionary, the command is "urban".
+  directly to an image to rehost.
+* Urban dictionary support.
+* Ability to execute various scripts, regardless of their language.
 
 ## Planned Features
 
