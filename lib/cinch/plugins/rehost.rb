@@ -117,7 +117,7 @@ module Cinch
         while followed < limit do
           url      = URI.parse(url)
           response = Net::HTTP.start(url.host) do |http|
-            http.head(url.path)
+            http.get(url.path)
           end
 
           if response['location']
