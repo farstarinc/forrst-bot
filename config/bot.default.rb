@@ -8,7 +8,7 @@ ForrstBot::Bot.configure do |c|
   c.verbose  = false
 
   # Plugin configuration
-  c.plugins.prefix = /^\+/
+  c.plugins.prefix = /^\$/
 
   c.plugins.plugins = [
     Cinch::Plugins::Identify,
