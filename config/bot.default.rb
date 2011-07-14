@@ -15,7 +15,8 @@ ForrstBot::Bot.configure do |c|
     Cinch::Plugins::UrbanDictionary,
     Cinch::Plugins::TwitterMention,
     Cinch::Plugins::Rehost,
-    Cinch::Plugins::Script
+    Cinch::Plugins::Script,
+    Cinch::Plugins::Base64
   ]
 
   c.plugins.options[Cinch::Plugins::Identify] = {
