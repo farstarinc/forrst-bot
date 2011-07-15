@@ -49,7 +49,7 @@ module Cinch
           end
 
           ForrstBot::Model::Note.filter(:user => user).destroy
-        end 
+        end
       end
 
       ##

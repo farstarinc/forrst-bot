@@ -13,7 +13,6 @@ it on Bitbucket so it's next to impossible to add plugins and what not.
 * Allows users to rehost images on Imgur by providing a link to an HTML page or
   directly to an image to rehost.
 * Urban dictionary support.
-* Ability to execute various scripts, regardless of their language.
 * Storing notes for other users.
 * Defining keywords.
 

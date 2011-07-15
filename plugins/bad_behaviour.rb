@@ -17,15 +17,15 @@ module Cinch
         + 'don\'t act like retards.'
 
       match(
-        /^data:\w+\/\w+;base64/, 
-        :use_prefix => false, 
+        /^data:\w+\/\w+;base64/,
+        :use_prefix => false,
         :use_suffix => false,
         :method     => :base64
       )
 
       match(
-        /@([\w\-\{\\\_}<\]\[\^]+)/, 
-        :use_prefix => false, 
+        /@([\w\-\{\\\_}<\]\[\^]+)/,
+        :use_prefix => false,
         :use_suffix => false,
         :method     => :twitter_mention
       )
@@ -43,7 +43,7 @@ module Cinch
 
       ##
       # Yells at a user for using @username style mentions in a channel.
-      # 
+      #
       # @author Yorick Peterse
       # @since  12-07-2011
       # @param  [Cinch::Message] message

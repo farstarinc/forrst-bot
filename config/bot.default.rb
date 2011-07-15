@@ -14,7 +14,6 @@ ForrstBot::Bot.configure do |c|
     Cinch::Plugins::Identify,
     Cinch::Plugins::UrbanDictionary,
     Cinch::Plugins::Rehost,
-    Cinch::Plugins::Script,
     Cinch::Plugins::Note,
     Cinch::Plugins::BadBehaviour,
     Cinch::Plugins::Definition
@@ -28,9 +27,5 @@ ForrstBot::Bot.configure do |c|
 
   c.plugins.options[Cinch::Plugins::Rehost] = {
     :api_key => nil
-  }
-
-  c.plugins.options[Cinch::Plugins::Script] = {
-    :script => File.expand_path('../../script', __FILE__)
   }
 end

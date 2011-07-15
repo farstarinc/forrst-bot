@@ -11,7 +11,7 @@ module Cinch
     #
     #     [TRIGGER]def [NAME] [VALUE]
     #
-    # Note that If the name contains whitespace characters it should be wrapped 
+    # Note that If the name contains whitespace characters it should be wrapped
     # in quotes.
     #
     # @author Yorick Peterse
@@ -26,7 +26,7 @@ module Cinch
         + ' Example: $def "tcy radio" http://mixlr.com/tcyradio/live'
 
       match(/def\s+(.*)/)
-    
+
       ##
       # Stores a new definition in the database. The names of definitions can
       # include whitespace but only if the name has been quoted. This means that
@@ -84,10 +84,10 @@ module Cinch
           name       = definition[0].strip
           value      = definition[1].strip if definition[1]
         end
-    
+
         # Store the definition. Any existing definitions will be overwritten.
         existing = ForrstBot::Model::Definition[
-          :name    => name, 
+          :name    => name,
           :channel => message.channel.to_s
         ]
 
@@ -96,7 +96,7 @@ module Cinch
             return message.reply(existing.value, true)
           else
             return message.reply(
-              "The definition \"#{name}\" does not exist", 
+              "The definition \"#{name}\" does not exist",
               true
             )
           end
@@ -105,15 +105,15 @@ module Cinch
         if existing
           existing.destroy
           message.reply(
-            "The definition \"#{name}\" already exists and will be overwritten", 
+            "The definition \"#{name}\" already exists and will be overwritten",
             true
           )
         end
 
         begin
           ForrstBot::Model::Definition.create(
-            :name    => name, 
-            :value   => value, 
+            :name    => name,
+            :value   => value,
             :author  => message.user.nick,
             :channel => message.channel.to_s
           )
