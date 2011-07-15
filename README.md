@@ -14,12 +14,8 @@ it on Bitbucket so it's next to impossible to add plugins and what not.
   directly to an image to rehost.
 * Urban dictionary support.
 * Ability to execute various scripts, regardless of their language.
-
-## Planned Features
-
-* Notes, reminders, that sort of thing.
-* Defining keywords and their values (similar to forrstdotcom's .rem command).
-* Auto kicking people who paste Base64 stuff in the chat.
+* Storing notes for other users.
+* Defining keywords.
 
 ## Requirements
 
