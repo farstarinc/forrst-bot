@@ -13,10 +13,11 @@ ForrstBot::Bot.configure do |c|
   c.plugins.plugins = [
     Cinch::Plugins::Identify,
     Cinch::Plugins::UrbanDictionary,
-    Cinch::Plugins::TwitterMention,
     Cinch::Plugins::Rehost,
     Cinch::Plugins::Script,
-    Cinch::Plugins::Base64
+    Cinch::Plugins::Note,
+    Cinch::Plugins::BadBehaviour,
+    Cinch::Plugins::Definition
   ]
 
   c.plugins.options[Cinch::Plugins::Identify] = {

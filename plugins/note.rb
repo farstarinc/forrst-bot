@@ -7,6 +7,10 @@ module Cinch
     # not around. As soon as a user speaks in a channel the bot is active in teh
     # bot will send a private message to that user with all unread notes.
     #
+    # Usage:
+    #
+    #     [TRIGGER]note [USERNAME] [NOTE]
+    #
     # @author Yorick Peterse
     # @since  14-07-2011
     #
