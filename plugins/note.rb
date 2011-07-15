@@ -23,7 +23,8 @@ module Cinch
       match(/note\s+([\w\-\{\\\_}<\]\[\^]+)\s+(.*)/)
 
       ##
-      # Executes the plugin based on an event.
+      # Notifies a user that he/she has a number of unread notes as soon as that
+      # particular user speaks in a channel.
       #
       # @author Yorick Peterse
       # @since  14-07-2011
@@ -94,8 +95,6 @@ module Cinch
               + "I'll send them to you.",
             true
           )
-        else
-          message.reply('You have no unread notes', true)
         end
       end
     end # Note
