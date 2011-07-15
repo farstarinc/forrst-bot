@@ -7,9 +7,13 @@ require 'cinch/plugins/identify'
 require 'cinch/plugins/urbandictionary'
 
 # Load all official plugins
-Dir.glob(File.expand_path('../cinch/plugins/*.rb', __FILE__)).each do |f|
+Dir.glob(File.expand_path('../plugins/*.rb', __FILE__)).each do |f|
   require(f)
 end
+
+# Load all the required Sequel extensions/plugins
+Sequel.extension(:migration)
+Sequel::Model.plugin(:validation_helpers)
 
 ##
 # ForrstBot (known as "forrst-bot" on IRC) is a bot written for the Forrst
@@ -47,6 +51,13 @@ module ForrstBot
       if @database.nil?
         $stderr.puts('No database connection has been set')
         exit
+      end
+      
+      # Load all the models after the database connection has been established.
+      Dir.glob(
+        File.expand_path('../model/*.rb', __FILE__)
+      ).each do |f|
+        require(f)
       end
 
       # Trap the signals

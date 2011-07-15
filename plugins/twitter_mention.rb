@@ -13,6 +13,9 @@ module Cinch
     class TwitterMention
       include Cinch::Plugin
 
+      plugin 'twitter_mention'
+      help 'Yells at people that use @username mentions'
+
       match(
         /@([\w\-\{\\\_}<\]\[\^]+)/, 
         :use_prefix => false, 
@@ -25,7 +28,7 @@ module Cinch
       # 
       # @author Yorick Peterse
       # @since  12-07-2011
-      # @param  [Cinch::Message]
+      # @param  [Cinch::Message] message
       # @param  [String] matched_user The user that was mentioned.
       #
       def execute(message, matched_user)

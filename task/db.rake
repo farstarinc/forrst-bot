@@ -1,5 +1,3 @@
-Sequel.extension(:migration)
-
 namespace :db do
   desc 'Migrates the database to the most recent or the specified version'
   task :migrate, :version do |task, args|
@@ -34,7 +32,6 @@ namespace :db do
 
     template = <<-TEMPLATE
 Sequel.migration do
-
   up do
     
   end
@@ -42,7 +39,6 @@ Sequel.migration do
   down do
     
   end
-
 end
 TEMPLATE
 

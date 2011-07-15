@@ -5,7 +5,7 @@
 #
 ForrstBot.database = Sequel.connect(
   :adapter  => 'sqlite',
-  :host     => File.expand_path('../../database.db', __FILE__),
+  :database => File.expand_path('../../database.db', __FILE__),
   :test     => true,
   :encoding => 'utf8'
 )

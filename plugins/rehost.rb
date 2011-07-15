@@ -31,6 +31,9 @@ module Cinch
     class Rehost
       include Cinch::Plugin
 
+      plugin 'rehost'
+      help   'Rehosts an image on Imgur. Example: $rehost http://cl.ly/8Qmm'
+
       match(/rehost\s+(.+)/)
 
       ##
@@ -38,14 +41,19 @@ module Cinch
       #
       # @author Yorick Peterse
       # @since  12-07-2011
-      # @param  [Cinch::Message]
+      # @param  [Cinch::Message] message
       # @param  [String] image The URL to the image that has to be
       # re-hosted.
       #
       def execute(message, image)
         # If the page is an HTML page we'll have to extract the image URL. The
         # first <img> tag that's found is used.
-        image    = URI.parse(image)
+        image = URI.parse(image)
+
+        if image.host.nil?
+          return message.reply('The specified URL is invalid', true)
+        end
+
         response = Net::HTTP.start(image.host) do |http|
           http.get(image.path)
         end

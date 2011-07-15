@@ -27,6 +27,10 @@ module Cinch
     class Script
       include Cinch::Plugin
 
+      plugin 'script'
+      help 'Allows the bot to execute scripts stored in a special directory. ' \
+        + 'Example: $script perl.pl'
+
       match(/script\s+(\S+)(.*)/)
 
       ##
@@ -34,7 +38,7 @@ module Cinch
       #
       # @author Yorick Peterse
       # @since  13-07-2011
-      # @param  [Cinch::Message]
+      # @param  [Cinch::Message] message
       # @param  [String] script The filename of the script to call.
       # @param  [String] params A whitespace separated string containing all the
       # parameters to pass to the script.

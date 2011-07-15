@@ -1,4 +1,4 @@
-require File.expand_path('../lib/forrst_bot' , __FILE__)
+require File.expand_path('../app'            , __FILE__)
 require File.expand_path('../config/bot'     , __FILE__)
 require File.expand_path('../config/database', __FILE__)
 
