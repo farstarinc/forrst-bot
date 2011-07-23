@@ -18,8 +18,8 @@ module Cinch
       include Cinch::Plugin
 
       plugin 'note'
-      help   'Allows users to leave notes for themselves or other users. ' \
-        + 'Example: $note yorickpeterse Hello, world!'
+      help   'Allows users to leave notes for themselves or other users.' \
+        + "\nExample: $note yorickpeterse Hello, world!"
 
       listen_to(:message)
       listen_to(:join, :method => :list)

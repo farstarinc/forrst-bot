@@ -16,13 +16,14 @@ ForrstBot::Bot.configure do |c|
     Cinch::Plugins::Rehost,
     Cinch::Plugins::Note,
     Cinch::Plugins::BadBehaviour,
-    Cinch::Plugins::Definition
+    Cinch::Plugins::Definition,
+    Cinch::Plugins::Ping
   ]
 
   c.plugins.options[Cinch::Plugins::Identify] = {
     :username => 'forrst-bot',
     :password => nil,
-    :type     => :nickserv 
+    :type     => :nickserv
   }
 
   c.plugins.options[Cinch::Plugins::Rehost] = {

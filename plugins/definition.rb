@@ -23,9 +23,35 @@ module Cinch
       plugin 'def'
       help   'Stores a "key/value" pair in the database and allows users to ' \
         + 'retrieve them at a later time. Whitespace in the keys is allowed.' \
-        + ' Example: $def "tcy radio" http://mixlr.com/tcyradio/live'
+        + "\nExample: $def \"tcy radio\" http://mixlr.com/tcyradio/live"
 
       match(/def\s+(.*)/)
+      match(/\?(.*)/, :method => :retrieve)
+
+      ##
+      # Retrieves the given definition if it exists.
+      #
+      # @author Yorick Peterse
+      # @since  23-07-2011
+      # @param  [Cinch::Message] message
+      # @param  [String] definition The definition to retrieve.
+      #
+      def retrieve(message, definition)
+        definition = definition.strip
+        existing   = ForrstBot::Model::Definition[
+          :name    => definition,
+          :channel => message.channel.to_s
+        ]
+
+        if existing
+          return message.reply(existing.value, true)
+        else
+          return message.reply(
+            "The definition \"#{definition}\" does not exist",
+            true
+          )
+        end
+      end
 
       ##
       # Stores a new definition in the database. The names of definitions can
@@ -81,8 +107,8 @@ module Cinch
         else
           # Easy, the definition is in the format of [name][whitespace][value]
           definition = definition.split(/\s/)
-          name       = definition[0].strip
-          value      = definition[1].strip if definition[1]
+          name       = definition.delete_at(0).strip
+          value      = definition.join(' ') unless definition.empty?
         end
 
         # Store the definition. Any existing definitions will be overwritten.
@@ -90,17 +116,6 @@ module Cinch
           :name    => name,
           :channel => message.channel.to_s
         ]
-
-        if value.nil? or value.empty?
-          if existing
-            return message.reply(existing.value, true)
-          else
-            return message.reply(
-              "The definition \"#{name}\" does not exist",
-              true
-            )
-          end
-        end
 
         if existing
           existing.destroy
