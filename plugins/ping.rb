@@ -21,7 +21,7 @@ module Cinch
     # @author Abdelrahman Mahmoud
     # @since  23-07-2011
     #
-    class Rehost
+    class Ping
       include Cinch::Plugin
 
       plugin 'ping'
