@@ -19,6 +19,7 @@ module Cinch
     #
     class Definition
       include Cinch::Plugin
+      include ForrstBot::Helper::Help
 
       plugin 'def'
       help   'Stores a "key/value" pair in the database and allows users to ' \
@@ -26,6 +27,7 @@ module Cinch
         + "\nExample: $def \"tcy radio\" http://mixlr.com/tcyradio/live"
 
       match(/def\s+(.*)/)
+      match(/def$/  , :method => :show_help)
       match(/\?(.*)/, :method => :retrieve)
 
       ##

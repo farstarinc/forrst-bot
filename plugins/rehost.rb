@@ -35,6 +35,7 @@ module Cinch
       help   'Rehosts an image on Imgur. Example: $rehost http://cl.ly/8Qmm'
 
       match(/rehost\s+(.+)/)
+      match(/rehost$/, :method => :show_help)
 
       ##
       # Executes the plugin.

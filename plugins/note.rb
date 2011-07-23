@@ -16,6 +16,7 @@ module Cinch
     #
     class Note
       include Cinch::Plugin
+      include ForrstBot::Helper::Help
 
       plugin 'note'
       help   'Allows users to leave notes for themselves or other users.' \
@@ -24,6 +25,7 @@ module Cinch
       listen_to(:message)
       listen_to(:join, :method => :list)
 
+      match(/note$/, :method => :show_help)
       match(/note\s+([\w\-\{\\\_}<\]\[\^]+)\s+(.*)/)
 
       ##

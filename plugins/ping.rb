@@ -23,12 +23,14 @@ module Cinch
     #
     class Ping
       include Cinch::Plugin
+      include ForrstBot::Helper::Help
 
       plugin 'ping'
       help   "Checks if the website is down or not." \
         + "\nExample: $ping http://google.com/"
 
-      match(/ping|up\s+(.+)/)
+      match(/(ping|up)\s+(.+)/)
+      match(/(ping|up)$/, :method => :show_help)
 
       ##
       # Executes the plugin.
@@ -36,9 +38,10 @@ module Cinch
       # @author Abdelrahman Mahmoud
       # @since  23-07-2011
       # @param  [Cinch::Message] message
+      # @param  [String] cmd The cmd that was called, either "ping" or "up".
       # @param  [String] url The URL you want to ping.
       #
-      def execute(message, url)
+      def execute(message, cmd, url)
         # URI.parse always requires a scheme
         url = 'http://' + url if !url.match(/^http/)
 

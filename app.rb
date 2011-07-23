@@ -6,6 +6,8 @@ require 'nokogiri'
 require 'cinch/plugins/identify'
 require 'cinch/plugins/urbandictionary'
 
+require File.expand_path('../helper/help', __FILE__)
+
 # Load all official plugins
 Dir.glob(File.expand_path('../plugins/*.rb', __FILE__)).each do |f|
   require(f)
@@ -52,7 +54,7 @@ module ForrstBot
         $stderr.puts('No database connection has been set')
         exit
       end
-      
+
       # Load all the models after the database connection has been established.
       Dir.glob(
         File.expand_path('../model/*.rb', __FILE__)
@@ -67,7 +69,7 @@ module ForrstBot
           @database.disconnect
         end
       end
-      
+
       # Start the bot
       Bot.start
     end
